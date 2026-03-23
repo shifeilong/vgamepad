@@ -91,6 +91,7 @@ class DS4_DPAD_DIRECTIONS(IntEnum):
     """
     DualShock 4 directional pad (HAT) values
     """
+     _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     DS4_BUTTON_DPAD_NONE = 0x8
     DS4_BUTTON_DPAD_NORTHWEST = 0x7
     DS4_BUTTON_DPAD_WEST = 0x6
@@ -106,6 +107,7 @@ class DS4_REPORT(Structure):
     """
     DualShock 4 HID Input report
     """
+    _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     _fields_ = [("bThumbLX", c_byte),
                 ("bThumbLY", c_byte),
                 ("bThumbRX", c_byte),
@@ -133,6 +135,7 @@ class DS4_TOUCH(Structure):
     """
     DualShock 4 HID Touchpad structure
     """
+    _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     _fields_ = [("bPacketCounter", c_byte),  # timestamp / packet counter associated with touch event
                 ("bIsUpTrackingNum1", c_byte),  # 0 means down; active low
                 # unique to each finger down, so for a lift and repress the value is incremented
@@ -143,6 +146,7 @@ class DS4_TOUCH(Structure):
 
 
 class DS4_SUB_REPORT_EX(Structure):
+    _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     _fields_ = [("bThumbLX", c_byte),
                 ("bThumbLY", c_byte),
                 ("bThumbRX", c_byte),
@@ -172,6 +176,7 @@ class DS4_REPORT_EX(Union):
     """
     DualShock 4 v1 complete HID Input report
     """
+    _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     _fields_ = [("Report", DS4_SUB_REPORT_EX),
                 ("ReportBuffer", c_ubyte * 63)]
 
