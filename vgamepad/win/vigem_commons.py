@@ -91,7 +91,6 @@ class DS4_DPAD_DIRECTIONS(IntEnum):
     """
     DualShock 4 directional pad (HAT) values
     """
-    _pack_ = 1 # 关键：必须禁用 ctypes 自动对齐，否则 DS4 报告会错位
     DS4_BUTTON_DPAD_NONE = 0x8
     DS4_BUTTON_DPAD_NORTHWEST = 0x7
     DS4_BUTTON_DPAD_WEST = 0x6
